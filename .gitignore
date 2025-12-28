@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated icons (run `pnpm generate-icons` to regenerate)
+/generated-icons

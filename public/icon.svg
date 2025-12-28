@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <!-- 渐变：从左上到右下 -->
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#007AFF"/>
+      <stop offset="100%" stop-color="#0056CC"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景：蓝色渐变圆角矩形 -->
+  <rect width="512" height="512" rx="108" ry="108" fill="url(#bg-gradient)"/>
+
+  <!-- 图标：瞄准镜/定位图标，放大比例 -->
+  <g transform="translate(256, 256)" stroke="white" stroke-width="32" fill="none">
+    <!-- 外圆 -->
+    <circle cx="0" cy="0" r="175"/>
+    <!-- 内圆（中心圆环，空心） -->
+    <circle cx="0" cy="0" r="68"/>
+    <!-- 十字线：与圆之间留有间隙 -->
+    <line x1="0" y1="-175" x2="0" y2="-100"/>
+    <line x1="0" y1="100" x2="0" y2="175"/>
+    <line x1="-175" y1="0" x2="-100" y2="0"/>
+    <line x1="100" y1="0" x2="175" y2="0"/>
+  </g>
+</svg>
