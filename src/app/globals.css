@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
-:root {
+/* Light theme (default) */
+:root,
+html.light {
   --background: #fafafa;
   --foreground: #171717;
   --primary: #007AFF;
@@ -14,20 +16,19 @@
   --card-hover: #f9fafb;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --primary: #0A84FF;
-    --primary-dark: #007AFF;
-    --primary-light: #5AC8FA;
-    --secondary: #5E5CE6;
-    --accent: #5AC8FA;
-    --muted: #9ca3af;
-    --border: #27272a;
-    --card: #18181b;
-    --card-hover: #27272a;
-  }
+/* Dark theme */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  --primary: #0A84FF;
+  --primary-dark: #007AFF;
+  --primary-light: #5AC8FA;
+  --secondary: #5E5CE6;
+  --accent: #5AC8FA;
+  --muted: #9ca3af;
+  --border: #27272a;
+  --card: #18181b;
+  --card-hover: #27272a;
 }
 
 @theme inline {
@@ -79,11 +80,9 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  .glass {
-    background: rgba(24, 24, 27, 0.7);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+html.dark .glass {
+  background: rgba(24, 24, 27, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Animations */
@@ -226,10 +225,8 @@ body {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-@media (prefers-color-scheme: dark) {
-  .feature-card:hover {
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-  }
+html.dark .feature-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Section spacing */

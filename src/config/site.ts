@@ -41,8 +41,8 @@ export const siteConfig = {
 
   // 系统要求
   systemRequirements: {
-    zh: "需要 macOS 11.0 或更高版本",
-    en: "Requires macOS 11.0 or later",
+    zh: "需要 macOS 13.0 或更高版本",
+    en: "Requires macOS 13.0 or later",
   },
 
   // 版权信息

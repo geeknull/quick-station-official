@@ -122,6 +122,13 @@ export const zh = {
     zh: "中文",
     en: "English",
   },
+
+  // 主题切换
+  theme: {
+    system: "跟随系统",
+    light: "浅色",
+    dark: "深色",
+  },
 };
 
 export type Translations = {
@@ -196,5 +203,10 @@ export type Translations = {
   language: {
     zh: string;
     en: string;
+  };
+  theme: {
+    system: string;
+    light: string;
+    dark: string;
   };
 };

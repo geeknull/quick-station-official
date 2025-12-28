@@ -124,4 +124,11 @@ export const en: Translations = {
     zh: "中文",
     en: "English",
   },
+
+  // Theme Switch
+  theme: {
+    system: "System",
+    light: "Light",
+    dark: "Dark",
+  },
 };

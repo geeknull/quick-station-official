@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useLocale } from "@/i18n";
 import { LanguageSwitcher } from "./ui/LanguageSwitcher";
+import { ThemeSwitcher } from "./ui/ThemeSwitcher";
 import { DownloadButton } from "./ui/DownloadButton";
 import { siteConfig } from "@/config/site";
 
@@ -79,7 +80,8 @@ export function Header() {
           </div>
 
           {/* Right side */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            <ThemeSwitcher />
             <LanguageSwitcher />
             <div className="hidden md:block">
               <DownloadButton size="sm" />
