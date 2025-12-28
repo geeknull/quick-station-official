@@ -10,6 +10,15 @@ const appIcons = [
   { name: "Safari", color: "#006CFF", icon: "safari" },
   { name: "Music", color: "#FA2D48", icon: "music" },
   { name: "Notes", color: "#FFCC00", icon: "notes" },
+  { name: "Photos", color: "#FF9500", icon: "photos" },
+  // 以下图标注释掉，方便调试不同数量
+  // { name: "Mail", color: "#007AFF", icon: "mail" },
+  // { name: "Calendar", color: "#FF3B30", icon: "calendar" },
+  // { name: "Messages", color: "#34C759", icon: "messages" },
+  // { name: "Maps", color: "#5AC8FA", icon: "maps" },
+  // { name: "Settings", color: "#8E8E93", icon: "settings" },
+  // { name: "Clock", color: "#FF9500", icon: "clock" },
+  // { name: "Weather", color: "#5AC8FA", icon: "weather" },
 ];
 
 // 四舍五入到小数点后2位，确保服务端和客户端一致
@@ -75,6 +84,7 @@ export function RingLauncher({
               stroke="var(--border)"
               strokeWidth="1"
               className="transition-all duration-200 cursor-pointer"
+              style={{ pointerEvents: "all" }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
             />
@@ -90,17 +100,18 @@ export function RingLauncher({
         return (
           <div
             key={app.name}
-            className="absolute transition-all duration-200"
+            className="absolute transition-all duration-200 cursor-pointer"
             style={{
               left: `calc(50% + ${pos.x}px)`,
               top: `calc(50% + ${pos.y}px)`,
               transform: `translate(-50%, -50%) ${isHovered ? "scale(1.15)" : "scale(1)"}`,
+              zIndex: isHovered ? 20 : 1,
             }}
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
           >
             <div
-              className={`w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center shadow-lg transition-all duration-200 ${
+              className={`w-10 h-10 md:w-11 md:h-11 rounded-lg flex items-center justify-center shadow-lg transition-all duration-200 ${
                 isHovered ? "ring-2 ring-[var(--primary)] ring-offset-2" : ""
               }`}
               style={{ backgroundColor: app.color }}
@@ -146,7 +157,7 @@ export function RingLauncher({
 }
 
 function AppIcon({ name }: { name: string }) {
-  const iconClass = "w-6 h-6 md:w-7 md:h-7 text-white";
+  const iconClass = "w-5 h-5 md:w-6 md:h-6 text-white";
 
   switch (name) {
     case "hammer":
@@ -189,6 +200,54 @@ function AppIcon({ name }: { name: string }) {
       return (
         <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
           <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7V7zm0 4h10v2H7v-2zm0 4h7v2H7v-2z" />
+        </svg>
+      );
+    case "photos":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z" />
+        </svg>
+      );
+    case "mail":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+        </svg>
+      );
+    case "calendar":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM9 10H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm-8 4H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2z" />
+        </svg>
+      );
+    case "messages":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+        </svg>
+      );
+    case "maps":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+        </svg>
+      );
+    case "settings":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19.14 12.94c.04-.31.06-.63.06-.94 0-.31-.02-.63-.06-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.04.31-.06.63-.06.94s.02.63.06.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+        </svg>
+      );
+    case "clock":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.2 3.2.8-1.3-4.5-2.7V7z" />
+        </svg>
+      );
+    case "weather":
+      return (
+        <svg className={iconClass} viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z" />
         </svg>
       );
     default:
