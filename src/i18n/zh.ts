@@ -11,8 +11,13 @@ export const zh = {
     tagline: "为 macOS 设计的极速启动器",
     description:
       "通过快捷键呼出定制化的圆形交互界面，实现应用的极速切换。简洁、高效，让应用启动成为肌肉记忆。",
-    downloadButton: "在 Mac App Store 下载",
+    downloadButton: "下载",
     learnMore: "了解更多",
+    downloadOptions: {
+      appStore: "App Store",
+      direct: "直接下载",
+      appStoreUnavailable: "应用待上架，请使用直接下载",
+    },
   },
 
   // 设计哲学
@@ -130,6 +135,11 @@ export type Translations = {
     description: string;
     downloadButton: string;
     learnMore: string;
+    downloadOptions: {
+      appStore: string;
+      direct: string;
+      appStoreUnavailable: string;
+    };
   };
   philosophy: {
     title: string;

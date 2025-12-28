@@ -13,7 +13,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLocale}
-      className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:bg-[var(--card-hover)] border border-[var(--border)]"
+      className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:bg-[var(--card-hover)] border border-[var(--border)] cursor-pointer"
       aria-label="Switch language"
     >
       <svg

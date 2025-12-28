@@ -10,9 +10,16 @@ export const siteConfig = {
   },
 
   // ============================================
-  // 下载链接配置 - 请在此处填写您的 App Store 链接
+  // 下载链接配置
   // ============================================
-  downloadUrl: "https://apps.apple.com/app/quickstation/id000000000",
+  download: {
+    // App Store 链接（上架后填写）
+    appStoreUrl: "https://apps.apple.com/app/quickstation/id000000000",
+    // 直接下载链接
+    directUrl: "/downloads/QuickStation.dmg",
+    // App Store 是否已上架（上架后改为 true）
+    appStoreAvailable: false,
+  },
 
   // ============================================
   // 微信公众号配置 - 请在此处填写您的公众号信息

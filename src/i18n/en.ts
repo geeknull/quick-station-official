@@ -13,8 +13,13 @@ export const en: Translations = {
     tagline: "Lightning-fast App Launcher for macOS",
     description:
       "Invoke a customizable circular interface with a hotkey for instant app switching. Simple, efficient, making app launching muscle memory.",
-    downloadButton: "Download on the Mac App Store",
+    downloadButton: "Download",
     learnMore: "Learn More",
+    downloadOptions: {
+      appStore: "App Store",
+      direct: "Direct Download",
+      appStoreUnavailable: "Coming soon to App Store, please use direct download",
+    },
   },
 
   // Design Philosophy
