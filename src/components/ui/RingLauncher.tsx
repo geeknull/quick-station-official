@@ -28,8 +28,10 @@ export function RingLauncher({
   const [centerHovered, setCenterHovered] = useState(false);
 
   const getSegmentPosition = (index: number, total: number) => {
-    const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
-    const radius = 110;
+    // 使用 index + 0.5 让图标位于扇形区域中心而非边界线上
+    const angle = ((index + 0.5) / total) * 2 * Math.PI - Math.PI / 2;
+    // 扇形区域：内半径60px，外半径140px，中心为100px
+    const radius = 100;
     const x = round(Math.cos(angle) * radius);
     const y = round(Math.sin(angle) * radius);
     return { x, y };
@@ -117,8 +119,11 @@ export function RingLauncher({
       {/* Center icon */}
       <div
         className={`ring-center glass cursor-pointer transition-all duration-200 ${
-          centerHovered ? "ring-2 ring-[var(--primary)] scale-105" : ""
+          centerHovered ? "ring-2 ring-[var(--primary)]" : ""
         }`}
+        style={{
+          transform: `translate(-50%, -50%) ${centerHovered ? "scale(1.05)" : "scale(1)"}`,
+        }}
         onMouseEnter={() => setCenterHovered(true)}
         onMouseLeave={() => setCenterHovered(false)}
       >
