@@ -123,15 +123,11 @@ async function main() {
     console.log(`  ✓ ${name} (${size}x${size})`);
   }
 
-  // 生成 favicon.ico (多尺寸)
+  // 生成 favicon.ico (256x256)
   console.log("  ⏳ 生成 favicon.ico...");
-  const ico16 = await svgToPng(16);
-  const ico32 = await svgToPng(32);
-  const ico48 = await svgToPng(48);
-
-  // 使用 sharp 合并为 ico（简化版，只用 32x32）
-  await sharp(ico32).toFile(join(FAVICON_DIR, "favicon.ico"));
-  console.log("  ✓ favicon.ico");
+  const ico256 = await svgToPng(256);
+  await sharp(ico256).toFile(join(FAVICON_DIR, "favicon.ico"));
+  console.log("  ✓ favicon.ico (256x256)");
 
   // 复制 SVG
   cpSync(SOURCE_SVG, join(FAVICON_DIR, "icon.svg"));

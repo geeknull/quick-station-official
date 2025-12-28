@@ -4,7 +4,20 @@
       "Bash(tree:*)",
       "Bash(pnpm build:*)",
       "Bash(wc:*)",
-      "Bash(pnpm lint:*)"
+      "Bash(pnpm lint:*)",
+      "WebFetch(domain:zeabur.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(npx zeabur@latest deploy:*)",
+      "Bash(npx zeabur@latest:*)",
+      "Bash(gh run list:*)",
+      "Bash(chmod:*)",
+      "Bash(./scripts/generate-icons.sh:*)",
+      "Bash(pnpm add:*)",
+      "Bash(node scripts/generate-icons.mjs:*)",
+      "Bash(pnpm install)",
+      "Bash(curl:*)",
+      "Bash(pnpm generate-icons:*)"
     ]
   }
 }
