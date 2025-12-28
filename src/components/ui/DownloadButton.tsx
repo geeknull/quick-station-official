@@ -81,7 +81,7 @@ export function DownloadButton({
 
       {/* 下拉菜单 */}
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 min-w-[200px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-[100]">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[200px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-[100]">
           <button
             onClick={handleAppStoreClick}
             className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer"
