@@ -12,6 +12,9 @@ const appIcons = [
   { name: "Notes", color: "#FFCC00", icon: "notes" },
 ];
 
+// 四舍五入到小数点后2位，确保服务端和客户端一致
+const round = (n: number) => Math.round(n * 100) / 100;
+
 interface RingLauncherProps {
   animated?: boolean;
   showLabels?: boolean;
@@ -27,8 +30,8 @@ export function RingLauncher({
   const getSegmentPosition = (index: number, total: number) => {
     const angle = (index / total) * 2 * Math.PI - Math.PI / 2;
     const radius = 110;
-    const x = Math.cos(angle) * radius;
-    const y = Math.sin(angle) * radius;
+    const x = round(Math.cos(angle) * radius);
+    const y = round(Math.sin(angle) * radius);
     return { x, y };
   };
 
@@ -50,14 +53,14 @@ export function RingLauncher({
           const innerRadius = 60;
           const outerRadius = 140;
 
-          const x1 = Math.cos(startRad) * innerRadius;
-          const y1 = Math.sin(startRad) * innerRadius;
-          const x2 = Math.cos(startRad) * outerRadius;
-          const y2 = Math.sin(startRad) * outerRadius;
-          const x3 = Math.cos(endRad) * outerRadius;
-          const y3 = Math.sin(endRad) * outerRadius;
-          const x4 = Math.cos(endRad) * innerRadius;
-          const y4 = Math.sin(endRad) * innerRadius;
+          const x1 = round(Math.cos(startRad) * innerRadius);
+          const y1 = round(Math.sin(startRad) * innerRadius);
+          const x2 = round(Math.cos(startRad) * outerRadius);
+          const y2 = round(Math.sin(startRad) * outerRadius);
+          const x3 = round(Math.cos(endRad) * outerRadius);
+          const y3 = round(Math.sin(endRad) * outerRadius);
+          const x4 = round(Math.cos(endRad) * innerRadius);
+          const y4 = round(Math.sin(endRad) * innerRadius);
 
           const isHovered = hoveredIndex === index;
 
