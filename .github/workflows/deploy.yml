@@ -28,6 +28,8 @@ jobs:
 
       - name: Deploy to Zeabur
         working-directory: ./out
-        run: npx zeabur@latest deploy -i=false --service-id ${{ secrets.ZEABUR_SERVICE_ID }} --environment-id ${{ secrets.ZEABUR_ENV_ID }}
         env:
           ZEABUR_TOKEN: ${{ secrets.ZEABUR_TOKEN }}
+        run: |
+          npx zeabur@latest context set project --id ${{ secrets.ZEABUR_PROJECT_ID }} -i=false -y
+          npx zeabur@latest deploy -i=false --service-id ${{ secrets.ZEABUR_SERVICE_ID }} --environment-id ${{ secrets.ZEABUR_ENV_ID }}
