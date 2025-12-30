@@ -72,6 +72,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh" suppressHydrationWarning>
+      <head>
+        <link
+          rel="preload"
+          href={siteConfig.wechat.qrCodeUrl}
+          as="image"
+          type="image/jpeg"
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
