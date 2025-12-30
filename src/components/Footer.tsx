@@ -60,20 +60,13 @@ export function Footer() {
                 {/* QR Code Popup */}
                 {showQR && (
                   <div className="absolute bottom-full left-0 mb-2 p-4 bg-white dark:bg-[var(--card)] rounded-xl shadow-xl border border-[var(--border)] z-10">
-                    <div className="w-32 h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mb-2">
-                      {/* Placeholder for QR code */}
-                      <span className="text-xs text-[var(--muted)] text-center px-2">
-                        {siteConfig.wechat.qrCodeUrl !== "/images/wechat-qr.png" ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={siteConfig.wechat.qrCodeUrl}
-                            alt="WeChat QR Code"
-                            className="w-full h-full object-contain"
-                          />
-                        ) : (
-                          "QR Code Placeholder"
-                        )}
-                      </span>
+                    <div className="w-32 h-32 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mb-2 overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={siteConfig.wechat.qrCodeUrl}
+                        alt="WeChat QR Code"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <p className="text-xs text-[var(--muted)] text-center">
                       {t.footer.scanQR}
