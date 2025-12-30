@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useLocale } from "@/i18n";
+import { useDownload } from "@/contexts/DownloadContext";
 import { siteConfig } from "@/config/site";
 
 interface DownloadButtonProps {
@@ -14,8 +15,10 @@ export function DownloadButton({
   className = "",
 }: DownloadButtonProps) {
   const { t } = useLocale();
+  const { downloadInfo } = useDownload();
   const [isOpen, setIsOpen] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [copySuccess, setCopySuccess] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const sizes = {
@@ -46,6 +49,19 @@ export function DownloadButton({
     }
   }, [showToast]);
 
+  // 复制成功提示自动消失
+  useEffect(() => {
+    if (copySuccess) {
+      const timer = setTimeout(() => setCopySuccess(null), 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [copySuccess]);
+
+  const handleCopy = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setCopySuccess(label);
+  };
+
   const handleAppStoreClick = () => {
     if (siteConfig.download.appStoreAvailable) {
       window.open(siteConfig.download.appStoreUrl, "_blank");
@@ -56,7 +72,9 @@ export function DownloadButton({
   };
 
   const handleDirectDownload = () => {
-    window.open(siteConfig.download.directUrl, "_blank");
+    if (!downloadInfo) return;
+    const url = `https://qs.geeknull.com${downloadInfo.downloadUrl}`;
+    window.location.href = url;
     setIsOpen(false);
   };
 
@@ -81,7 +99,7 @@ export function DownloadButton({
 
       {/* 下拉菜单 */}
       {isOpen && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 min-w-[200px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-[100]">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[320px] bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden z-[999]">
           <button
             onClick={handleAppStoreClick}
             className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer"
@@ -91,7 +109,7 @@ export function DownloadButton({
               {t.hero.downloadOptions.appStore}
             </span>
             {!siteConfig.download.appStoreAvailable && (
-              <span className="ml-auto text-xs text-gray-400">即将上线</span>
+              <span className="ml-auto text-xs text-gray-400">{t.hero.downloadOptions.comingSoon}</span>
             )}
           </button>
           <button
@@ -99,10 +117,84 @@ export function DownloadButton({
             className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left cursor-pointer border-t border-gray-100 dark:border-gray-700"
           >
             <DownloadIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
-            <span className="text-gray-800 dark:text-gray-200">
-              {t.hero.downloadOptions.direct}
-            </span>
+            <div className="flex-1">
+              <span className="text-gray-800 dark:text-gray-200">
+                {t.hero.downloadOptions.direct}
+              </span>
+              {downloadInfo && (
+                <div className="text-xs text-gray-400">
+                  v{downloadInfo.version} · {downloadInfo.sizeFormatted}
+                </div>
+              )}
+            </div>
           </button>
+          {/* 下载链接和校验值展示 */}
+          {downloadInfo && (
+            <div className="px-4 py-3 border-t border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+              <div className="space-y-3">
+                {/* 下载链接 */}
+                <div>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{t.hero.downloadOptions.downloadLink}</span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleCopy(`https://qs.geeknull.com${downloadInfo.downloadUrl}`, 'url');
+                      }}
+                      className="text-xs text-[var(--primary)] hover:underline cursor-pointer"
+                    >
+                      {copySuccess === 'url' ? t.hero.downloadOptions.copied : t.hero.downloadOptions.copy}
+                    </button>
+                  </div>
+                  <code className="text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded block break-all">
+                    https://qs.geeknull.com{downloadInfo.downloadUrl}
+                  </code>
+                </div>
+                {/* 校验值 */}
+                <div>
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">
+                    {t.hero.downloadOptions.verifyIntegrity}
+                  </p>
+                  <div className="space-y-2">
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">MD5</span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopy(downloadInfo.md5, 'md5');
+                          }}
+                          className="text-xs text-[var(--primary)] hover:underline cursor-pointer"
+                        >
+                          {copySuccess === 'md5' ? t.hero.downloadOptions.copied : t.hero.downloadOptions.copy}
+                        </button>
+                      </div>
+                      <code className="text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded block break-all">
+                        {downloadInfo.md5}
+                      </code>
+                    </div>
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">SHA256</span>
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleCopy(downloadInfo.sha256, 'sha256');
+                          }}
+                          className="text-xs text-[var(--primary)] hover:underline cursor-pointer"
+                        >
+                          {copySuccess === 'sha256' ? t.hero.downloadOptions.copied : t.hero.downloadOptions.copy}
+                        </button>
+                      </div>
+                      <code className="text-xs text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded block break-all">
+                        {downloadInfo.sha256}
+                      </code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       )}
 

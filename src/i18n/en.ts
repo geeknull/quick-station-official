@@ -19,6 +19,11 @@ export const en: Translations = {
       appStore: "App Store",
       direct: "Direct Download",
       appStoreUnavailable: "Coming soon to App Store, please use direct download",
+      comingSoon: "Coming Soon",
+      downloadLink: "Download Link",
+      verifyIntegrity: "Verify File Integrity",
+      copy: "Copy",
+      copied: "Copied",
     },
   },
 

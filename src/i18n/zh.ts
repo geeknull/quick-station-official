@@ -17,6 +17,11 @@ export const zh = {
       appStore: "App Store",
       direct: "直接下载",
       appStoreUnavailable: "应用待上架，请使用直接下载",
+      comingSoon: "即将上线",
+      downloadLink: "下载链接",
+      verifyIntegrity: "校验文件完整性",
+      copy: "复制",
+      copied: "已复制",
     },
   },
 
@@ -146,6 +151,11 @@ export type Translations = {
       appStore: string;
       direct: string;
       appStoreUnavailable: string;
+      comingSoon: string;
+      downloadLink: string;
+      verifyIntegrity: string;
+      copy: string;
+      copied: string;
     };
   };
   philosophy: {

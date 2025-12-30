@@ -10,7 +10,7 @@ export function Hero() {
   const { t } = useLocale();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center overflow-x-clip pt-20">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-radial" />
 
@@ -23,7 +23,7 @@ export function Hero() {
       <div className="container relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           {/* Text content */}
-          <div className="flex-1 text-center lg:text-left">
+          <div className="flex-1 text-center lg:text-left relative z-10">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in-up">
               <span className="gradient-text">{siteConfig.name}</span>
             </h1>
@@ -64,7 +64,7 @@ export function Hero() {
           </div>
 
           {/* Ring launcher visual */}
-          <div className="flex-1 flex justify-center animate-fade-in delay-400">
+          <div className="flex-1 flex justify-center animate-fade-in delay-400 relative z-0">
             <RingLauncher animated showLabels />
           </div>
         </div>

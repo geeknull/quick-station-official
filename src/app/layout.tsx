@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { DownloadProvider } from "@/contexts/DownloadContext";
 import { siteConfig } from "@/config/site";
 import "./globals.css";
 
@@ -75,7 +76,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <LocaleProvider>{children}</LocaleProvider>
+          <DownloadProvider>
+            <LocaleProvider>{children}</LocaleProvider>
+          </DownloadProvider>
         </ThemeProvider>
       </body>
     </html>
