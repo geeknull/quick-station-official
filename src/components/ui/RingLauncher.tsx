@@ -39,10 +39,12 @@ export function RingLauncher({
   const getSegmentPosition = (index: number, total: number) => {
     // 使用 index + 0.5 让图标位于扇形区域中心而非边界线上
     const angle = ((index + 0.5) / total) * 2 * Math.PI - Math.PI / 2;
-    // 扇形区域：内半径60px，外半径140px，中心为100px
+    // 扇形区域：内半径60，外半径140，中心为100（基于viewBox 360，半径180）
+    // 返回百分比值（相对于容器半径），让位置随容器缩放
     const radius = 100;
-    const x = round(Math.cos(angle) * radius);
-    const y = round(Math.sin(angle) * radius);
+    const radiusPercent = (radius / 180) * 50; // 转为相对于容器50%的百分比
+    const x = round(Math.cos(angle) * radiusPercent);
+    const y = round(Math.sin(angle) * radiusPercent);
     return { x, y };
   };
 
@@ -102,8 +104,8 @@ export function RingLauncher({
             key={app.name}
             className="absolute transition-all duration-200 cursor-pointer"
             style={{
-              left: `calc(50% + ${pos.x}px)`,
-              top: `calc(50% + ${pos.y}px)`,
+              left: `calc(50% + ${pos.x}%)`,
+              top: `calc(50% + ${pos.y}%)`,
               transform: `translate(-50%, -50%) ${isHovered ? "scale(1.15)" : "scale(1)"}`,
               zIndex: isHovered ? 20 : 1,
             }}
@@ -119,7 +121,7 @@ export function RingLauncher({
               <AppIcon name={app.icon} />
             </div>
             {showLabels && isHovered && (
-              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-xs font-medium whitespace-nowrap z-30 bg-[var(--background)] px-2 py-0.5 rounded shadow-sm">
                 {app.name}
               </div>
             )}
