@@ -61,12 +61,12 @@ export function DownloadButton({
   };
 
   return (
-    <div className={`relative ${className}`} ref={dropdownRef}>
+    <div className={`relative w-full sm:w-auto ${className}`} ref={dropdownRef}>
       {/* 主按钮 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          inline-flex items-center justify-center gap-2 font-medium
+          w-full sm:w-auto inline-flex items-center justify-center gap-2 font-medium
           bg-[var(--primary)] text-white rounded-xl
           hover:opacity-90 transition-all whitespace-nowrap cursor-pointer
           ${sizes[size]}

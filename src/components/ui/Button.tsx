@@ -18,7 +18,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center gap-2 font-medium transition-all rounded-xl cursor-pointer";
+    "w-full sm:w-auto inline-flex items-center justify-center gap-2 font-medium transition-all rounded-xl cursor-pointer";
 
   const variants = {
     primary:

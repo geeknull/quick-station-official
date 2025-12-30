@@ -34,7 +34,7 @@ export function Hero() {
               {t.hero.description}
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-in-up delay-300">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 justify-center lg:justify-start animate-fade-in-up delay-300">
               <DownloadButton size="lg" />
               <Button
                 variant="secondary"
