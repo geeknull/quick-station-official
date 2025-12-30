@@ -25,9 +25,8 @@ export const siteConfig = {
   // 微信公众号配置 - 请在此处填写您的公众号信息
   // ============================================
   wechat: {
-    name: "公众号名称",
-    // 请将二维码图片放置在 public/images/wechat-qr.png
-    qrCodeUrl: "/images/wechat-qr.png",
+    name: "QuickStation",
+    qrCodeUrl: "/qrcode_weixin_mp.jpg",
   },
 
   // ============================================
