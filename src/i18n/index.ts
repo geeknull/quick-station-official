@@ -3,15 +3,16 @@
 import { createContext, useContext } from "react";
 import { zh, type Translations } from "./zh";
 import { en } from "./en";
+import { defaultLocale, type Locale } from "./config";
 
-export type Locale = "zh" | "en";
+// 重导出配置
+export type { Locale } from "./config";
+export { locales, defaultLocale, isValidLocale } from "./config";
 
 export const translations: Record<Locale, Translations> = {
   zh,
   en,
 };
-
-export const defaultLocale: Locale = "zh";
 
 // Context for locale
 type LocaleContextType = {

@@ -1,19 +1,24 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useLocale, type Locale } from "@/i18n";
 
 export function LanguageSwitcher() {
-  const { locale, setLocale, t } = useLocale();
+  const { locale, t } = useLocale();
+  const pathname = usePathname();
 
-  const toggleLocale = () => {
-    const newLocale: Locale = locale === "zh" ? "en" : "zh";
-    setLocale(newLocale);
-  };
+  // 计算目标语言
+  const targetLocale: Locale = locale === "zh" ? "en" : "zh";
+
+  // 替换路径中的语言前缀
+  // 例如: /zh/privacy -> /en/privacy
+  const targetPath = pathname.replace(`/${locale}`, `/${targetLocale}`);
 
   return (
-    <button
-      onClick={toggleLocale}
-      className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:bg-[var(--card-hover)] border border-[var(--border)] cursor-pointer"
+    <Link
+      href={targetPath}
+      className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:bg-[var(--card-hover)] border border-[var(--border)]"
       aria-label="Switch language"
     >
       <svg
@@ -30,6 +35,6 @@ export function LanguageSwitcher() {
         />
       </svg>
       <span>{locale === "zh" ? t.language.en : t.language.zh}</span>
-    </button>
+    </Link>
   );
 }

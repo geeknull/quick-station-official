@@ -1,94 +1,10 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { LocaleProvider } from "@/components/LocaleProvider";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { DownloadProvider } from "@/contexts/DownloadContext";
-import { siteConfig } from "@/config/site";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-export const metadata: Metadata = {
-  title: {
-    default: `${siteConfig.name} - ${siteConfig.tagline.en}`,
-    template: `%s | ${siteConfig.name}`,
-  },
-  description: siteConfig.description.en,
-  keywords: [
-    "QuickStation",
-    "macOS",
-    "app launcher",
-    "productivity",
-    "快捷启动器",
-    "效率工具",
-  ],
-  authors: [{ name: siteConfig.name }],
-  creator: siteConfig.name,
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: "zh_CN",
-    title: siteConfig.name,
-    description: siteConfig.description.en,
-    siteName: siteConfig.name,
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteConfig.name,
-    description: siteConfig.description.en,
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-    ],
-    apple: "/apple-touch-icon.png",
-  },
-  manifest: "/site.webmanifest",
-};
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
-};
-
+// 根 layout 最小化，语言相关的 metadata 和 providers 移到 [locale]/layout.tsx
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="zh" suppressHydrationWarning>
-      <head>
-        <link
-          rel="preload"
-          href={siteConfig.wechat.qrCodeUrl}
-          as="image"
-          type="image/jpeg"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider>
-          <DownloadProvider>
-            <LocaleProvider>{children}</LocaleProvider>
-          </DownloadProvider>
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+  return children;
 }
