@@ -12,6 +12,7 @@ export function ThemeSwitcher() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- 两阶段渲染需要在挂载后设置状态
     setMounted(true);
   }, []);
 

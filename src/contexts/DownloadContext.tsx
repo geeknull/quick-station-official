@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, ReactNode, useRef } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 interface DownloadInfo {
   file: string;
@@ -34,6 +34,7 @@ export function DownloadProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (cachedData) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- 使用缓存数据初始化状态
       setDownloadInfo(cachedData);
       setLoading(false);
       return;

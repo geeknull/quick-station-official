@@ -17,7 +17,13 @@
       "Bash(node scripts/generate-icons.mjs:*)",
       "Bash(pnpm install)",
       "Bash(curl:*)",
-      "Bash(pnpm generate-icons:*)"
+      "Bash(pnpm generate-icons:*)",
+      "Bash(grep:*)",
+      "Bash(pnpm dev)",
+      "Bash(printf \"export const WECHAT_QR_BASE64 = ''data:image/jpeg;base64,\")",
+      "Bash(printf:*)",
+      "WebFetch(domain:next-intl.dev)",
+      "WebFetch(domain:medium.com)"
     ]
   }
 }
