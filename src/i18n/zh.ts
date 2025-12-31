@@ -122,6 +122,11 @@ export const zh = {
     madeFor: "为 macOS 用户打造",
   },
 
+  // 隐私政策页
+  privacy: {
+    backToHome: "← 返回首页",
+  },
+
   // 语言切换
   language: {
     zh: "中文",
@@ -209,6 +214,9 @@ export type Translations = {
     copyright: string;
     madeWith: string;
     madeFor: string;
+  };
+  privacy: {
+    backToHome: string;
   };
   language: {
     zh: string;

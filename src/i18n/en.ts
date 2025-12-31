@@ -124,6 +124,11 @@ export const en: Translations = {
     madeFor: "for macOS users",
   },
 
+  // Privacy Page
+  privacy: {
+    backToHome: "← Back to Home",
+  },
+
   // Language Switch
   language: {
     zh: "中文",

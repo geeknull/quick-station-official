@@ -6,7 +6,7 @@ import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import Link from "next/link";
 
 export default function PrivacyPage() {
-  const { locale } = useLocale();
+  const { locale, t } = useLocale();
 
   return (
     <div className="min-h-screen bg-[var(--background)]">
@@ -31,7 +31,7 @@ export default function PrivacyPage() {
               href={`/${locale}`}
               className="px-5 py-2.5 text-sm text-[var(--muted)] hover:text-[var(--foreground)] hover:bg-[var(--card)] rounded-lg transition-all"
             >
-              {locale === "zh" ? "← 返回首页" : "← Back to Home"}
+              {t.privacy.backToHome}
             </Link>
           </div>
         </div>
