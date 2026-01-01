@@ -30,7 +30,7 @@ const getSystemTheme = (): "light" | "dark" => {
 };
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
+  const [theme, setThemeState] = useState<Theme>("dark");
   const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
   const [mounted, setMounted] = useState(false);
 
@@ -57,7 +57,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   // 初始化
   useEffect(() => {
     const savedTheme = localStorage.getItem(THEME_KEY) as Theme | null;
-    const initialTheme = savedTheme || "system";
+    const initialTheme = savedTheme || "dark";
     // eslint-disable-next-line react-hooks/set-state-in-effect -- 两阶段渲染需要在挂载后设置初始状态
     setThemeState(initialTheme);
     applyTheme(initialTheme);
@@ -96,7 +96,7 @@ export function useTheme() {
   if (context === undefined) {
     // 返回默认值用于 SSR
     return {
-      theme: "system" as Theme,
+      theme: "dark" as Theme,
       setTheme: () => {},
       resolvedTheme: "light" as const,
     };
