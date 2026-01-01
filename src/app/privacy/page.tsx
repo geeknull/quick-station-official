@@ -25,19 +25,15 @@ export default function PrivacyRedirect() {
   }, [router]);
 
   return (
-    <html lang={defaultLocale}>
-      <body>
-        <div
-          style={{
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div style={{ opacity: 0.5 }}>Loading...</div>
-        </div>
-      </body>
-    </html>
+    <div
+      style={{
+        minHeight: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ opacity: 0.5 }}>Loading...</div>
+    </div>
   );
 }

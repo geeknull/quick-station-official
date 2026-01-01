@@ -1,21 +1,11 @@
-import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LocaleProvider } from "@/components/LocaleProvider";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { DownloadProvider } from "@/contexts/DownloadContext";
 import { siteConfig } from "@/config/site";
 import { locales, isValidLocale, type Locale } from "@/i18n/config";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { HtmlLangUpdater } from "@/components/HtmlLangUpdater";
 
 // 静态生成所有语言版本
 export function generateStaticParams() {
@@ -72,26 +62,8 @@ export async function generateMetadata({
       title: siteConfig.name,
       description: siteConfig.description[typedLocale],
     },
-    icons: {
-      icon: [
-        { url: "/favicon.ico", sizes: "any" },
-        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
-        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
-      ],
-      apple: "/apple-touch-icon.png",
-    },
-    manifest: "/site.webmanifest",
   };
 }
-
-export const viewport: Viewport = {
-  width: "device-width",
-  initialScale: 1,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
-  ],
-};
 
 export default async function LocaleLayout({
   children,
@@ -108,24 +80,13 @@ export default async function LocaleLayout({
   }
 
   return (
-    <html lang={locale} suppressHydrationWarning>
-      <head>
-        <link
-          rel="preload"
-          href={siteConfig.wechat.qrCodeUrl}
-          as="image"
-          type="image/jpeg"
-        />
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ThemeProvider>
-          <DownloadProvider>
-            <LocaleProvider locale={locale}>{children}</LocaleProvider>
-          </DownloadProvider>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ThemeProvider>
+      <DownloadProvider>
+        <LocaleProvider locale={locale}>
+          <HtmlLangUpdater locale={locale} />
+          {children}
+        </LocaleProvider>
+      </DownloadProvider>
+    </ThemeProvider>
   );
 }
